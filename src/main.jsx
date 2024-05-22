@@ -7,17 +7,17 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 
 const theme = createTheme({
   palette: {
-    primary: {
-      main: "#212121", //main
+    lightWhite: {
+      main: "#ECECEC"
     },
-    secondary: {
-      main: "#171717", //sidebar
+    darkPurple: {
+      main: "#D7C7F4"
     },
-    tertiary:{
-      main:"#2F2F2F" //text input
+    lightPurple: {
+      main: "#F5F2FC"
     },
-    lightWhite:{
-      main:"#ECECEC"
+    vdarkPurple:{
+      main:"#9785b9"
     }
   },
 });

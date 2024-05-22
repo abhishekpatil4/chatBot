@@ -21,12 +21,19 @@ import TextField from '@mui/material/TextField';
 import { colors } from '@mui/material';
 import Input from '@mui/material/Input';
 import Button from '@mui/material/Button';
+import data from "../../assets/sampleData.json"
+import { useEffect } from 'react';
+import newChatIcon from "../../assets/newChatIcon.svg";
+import icon from "../../assets/icon.png"
 
 
 
 const drawerWidth = 240;
 
 function Home(props) {
+    useEffect(() => {
+        console.log("data: ", data);
+    }, []);
     const theme = useTheme();
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
@@ -47,12 +54,21 @@ function Home(props) {
         }
     };
 
+    //background: 'linear-gradient(180deg, rgba(215, 199, 244, 0.2) 0%, rgba(151, 133, 186, 0.2) 100%)'
+
+
     const drawer = (
-        <Box sx={{ backgroundColor: theme.palette.secondary.main, height: '100vh' }}>
-            <Toolbar />
+        <Box sx={{ backgroundColor: 'white', height: '100vh' }}>
+            <Toolbar sx={{ backgroundColor: theme.palette.darkPurple.main, justifyContent: 'space-between' }}>
+                <Box sx={{ height: "32px", width: '32px', borderRadius: '10px', overflow: 'hidden' }}>
+                    <img src={icon} alt="logon icon" style={{ objectFit: 'fit', width: '150px' }} />
+                </Box>
+                <Typography sx={{ fontWeight: 600 }}>New Chat</Typography>
+                <img src={newChatIcon} alt="new chat icon" />
+            </Toolbar>
             <Divider />
             <List sx={{ color: theme.palette.lightWhite.main }}>
-                {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
+                {['Drafts'].map((text, index) => (
                     <ListItem key={text} disablePadding>
                         <ListItemButton>
                             <ListItemIcon>
@@ -63,7 +79,7 @@ function Home(props) {
                     </ListItem>
                 ))}
             </List>
-            <Divider />
+            {/* <Divider />
             <List sx={{ color: theme.palette.lightWhite.main }} >
                 {['All mail', 'Trash', 'Spam'].map((text, index) => (
                     <ListItem key={text} disablePadding>
@@ -75,7 +91,7 @@ function Home(props) {
                         </ListItemButton>
                     </ListItem>
                 ))}
-            </List>
+            </List> */}
         </Box>
     );
 
@@ -83,13 +99,17 @@ function Home(props) {
     const container = window !== undefined ? () => window().document.body : undefined;
 
     return (
-        <Box sx={{ display: 'flex', color: theme.palette.lightWhite.main }}>
+        <Box sx={{ display: 'flex' }}>
             <CssBaseline />
             <AppBar
                 position="fixed"
                 sx={{
                     width: { sm: `calc(100% - ${drawerWidth}px)` },
-                    ml: { sm: `${drawerWidth}px` },
+                    ml: {
+                        sm: `${drawerWidth}px`,
+                    },
+                    backgroundColor: theme.palette.lightPurple.main,
+                    boxShadow: 'none'
                 }}
             >
                 <Toolbar>
@@ -102,8 +122,8 @@ function Home(props) {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h4" noWrap component="div" sx={{ fontWeight: 600 }}>
-                        ChatBot
+                    <Typography variant="h4" noWrap component="div" sx={{ fontWeight: 600, color: theme.palette.vdarkPurple.main }}>
+                        Bot AI
                     </Typography>
                 </Toolbar>
             </AppBar>
@@ -143,7 +163,7 @@ function Home(props) {
             </Box>
             <Box
                 component="main"
-                sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` }, backgroundColor: theme.palette.primary.main, height: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+                sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` }, backgroundColor: theme.palette.lightPurple.main, height: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
             >
                 <Toolbar />
                 <Typography paragraph>
@@ -180,18 +200,17 @@ function Home(props) {
                 }}>
                     <Input disableUnderline placeholder='Message ChatBot'
                         sx={{
-                            backgroundColor: theme.palette.tertiary.main, color: theme.palette.lightWhite.main, height: "3rem", border: '1px solid gray', borderRadius: '80px', minWidth: '50rem',
-                            padding: '2rem',
-                            boxShadow: 3,
+                            backgroundColor: 'white', height: "1rem", border: '1px solid gray', borderRadius: '5px', minWidth: '50rem',
+                            padding: '1.5rem',
                         }} />
                     <Button variant="contained" sx={{
-                        backgroundColor: theme.palette.lightWhite.main, color: 'black', minWidth: '8rem', borderRadius: '80px',
+                        backgroundColor: theme.palette.darkPurple.main, color: 'black', minWidth: '8rem', borderRadius: '5px', fontWeight: 600, textTransform: 'none',
                         '&:hover': {
                             backgroundColor: '#adacac', // Change to your desired hover color
                         },
                     }}>Ask</Button>
                     <Button variant="contained" sx={{
-                        backgroundColor: theme.palette.lightWhite.main, color: 'black', minWidth: '8rem', borderRadius: '80px',
+                        backgroundColor: theme.palette.darkPurple.main, color: 'black', minWidth: '8rem', borderRadius: '5px', fontWeight: 600, textTransform: 'none',
                         '&:hover': {
                             backgroundColor: '#adacac', // Change to your desired hover color
                         },
