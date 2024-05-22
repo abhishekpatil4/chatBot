@@ -25,6 +25,10 @@ import data from "../../assets/sampleData.json"
 import { useEffect } from 'react';
 import newChatIcon from "../../assets/newChatIcon.svg";
 import icon from "../../assets/icon.png"
+import Grid from '@mui/material/Grid';
+
+
+const exampleMsg = ["Hi, what is the weather", "Hi, what is my location", "Hi, what is the temperature", "Hi, how are you"]
 
 
 
@@ -158,7 +162,33 @@ function Home(props) {
                 }}
             >
                 <Toolbar />
-                <Typography paragraph>
+                <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', marginTop: {md:'0rem', lg: '8rem' } }}>
+                    <Typography sx={{ fontWeight: 600, fontSize: '28px' }}>
+                        How Can I Help You Today?
+                    </Typography>
+                    <Box sx={{ height: "65px", width: '65px', borderRadius: '100%', overflow: 'hidden', boxShadow: 3, margin: '1rem' }}>
+                        <img src={icon} alt="logon icon" style={{ objectFit: 'fit', width: '150px' }} />
+                    </Box>
+                    <Box sx={{ width: '100%', marginTop: {xs:'2rem', lg:'5rem'} }}>
+                        <Grid container rowSpacing={{xs:1, lg:4}} columnSpacing={{ xs: 1, sm: 2, md: 0 }}>
+                            {
+                                exampleMsg.map((msg, idx) =>
+                                    <Grid key={idx} item xs={12} lg={6}>
+                                        <Box sx={{ width: '512px', height: "112px", backgroundColor: 'white', borderRadius: '5px', padding: '0.5rem', boxShadow: 2, margin: 'auto' }}>
+                                            <Typography sx={{ fontWeight: 700, fontSize: '20px', padding: '0.5rem' }}>
+                                                {msg}
+                                            </Typography>
+                                            <Typography sx={{ fontWeight: 400, fontSize: '16px', color: "gray", padding: '0.5rem' }}>
+                                                Get immediate AI generated response
+                                            </Typography>
+                                        </Box>
+                                    </Grid>
+                                )
+                            }
+                        </Grid>
+                    </Box>
+                </Box>
+                {/* <Typography paragraph>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
                     tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
                     enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus
@@ -171,20 +201,7 @@ function Home(props) {
                     feugiat vivamus at augue. At augue eget arcu dictum varius duis at
                     consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa
                     sapien faucibus et molestie ac.
-                </Typography>
-                <Typography paragraph>
-                    Consequat mauris nunc congue nisi vitae suscipit. Fringilla est ullamcorper
-                    eget nulla facilisi etiam dignissim diam. Pulvinar elementum integer enim
-                    neque volutpat ac tincidunt. Ornare suspendisse sed nisi lacus sed viverra
-                    tellus. Purus sit amet volutpat consequat mauris. Elementum eu facilisis
-                    sed odio morbi. Euismod lacinia at quis risus sed vulputate odio. Morbi
-                    tincidunt ornare massa eget egestas purus viverra accumsan in. In hendrerit
-                    gravida rutrum quisque non tellus orci ac. Pellentesque nec nam aliquam sem
-                    et tortor. Habitant morbi tristique senectus et. Adipiscing elit duis
-                    tristique sollicitudin nibh sit. Ornare aenean euismod elementum nisi quis
-                    eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
-                    posuere sollicitudin aliquam ultrices sagittis orci a.
-                </Typography>
+                </Typography> */}
                 <Box sx={{
                     display: 'flex', justifyContent: 'center', position: 'fixed',
                     bottom: 0, gap: 2, padding: '1rem 1rem 1rem 1rem',
