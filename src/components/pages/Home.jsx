@@ -20,6 +20,7 @@ import { useTheme } from '@emotion/react';
 import TextField from '@mui/material/TextField';
 import { colors } from '@mui/material';
 import Input from '@mui/material/Input';
+import Button from '@mui/material/Button';
 
 
 
@@ -142,10 +143,10 @@ function Home(props) {
             </Box>
             <Box
                 component="main"
-                sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` }, backgroundColor: theme.palette.primary.main, height: '100vh' }}
+                sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` }, backgroundColor: theme.palette.primary.main, height: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
             >
                 <Toolbar />
-                <Typography paragraph   >
+                <Typography paragraph>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
                     tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
                     enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus
@@ -172,23 +173,29 @@ function Home(props) {
                     eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
                     posuere sollicitudin aliquam ultrices sagittis orci a.
                 </Typography>
-                <Box sx={{ display: 'flex', justifyContent: 'center' }}>
-                    {/* <TextField
-                        id="outlined-multiline-flexible"
-                        label="Enter question"
-                        multiline
-                        maxRows={4}
-                        sx={{ backgroundColor: theme.palette.tertiary.main, minWidth: '50rem' }}
-                    /> */}
-                    <Input disableUnderline placeholder='Message ChatBot' 
-                    sx={{ backgroundColor: theme.palette.tertiary.main, color:theme.palette.lightWhite.main, height: "3rem", border: '1px solid gray', borderRadius: '80px', minWidth: '50rem',
-                    padding:'2rem',
-                    boxShadow:3,
-                    position:'fixed',
-                    bottom:30
-
-                    }} />
-
+                <Box sx={{
+                    display: 'flex', justifyContent: 'center', position: 'fixed',
+                    bottom: 30,
+                    gap: 2
+                }}>
+                    <Input disableUnderline placeholder='Message ChatBot'
+                        sx={{
+                            backgroundColor: theme.palette.tertiary.main, color: theme.palette.lightWhite.main, height: "3rem", border: '1px solid gray', borderRadius: '80px', minWidth: '50rem',
+                            padding: '2rem',
+                            boxShadow: 3,
+                        }} />
+                    <Button variant="contained" sx={{
+                        backgroundColor: theme.palette.lightWhite.main, color: 'black', minWidth: '8rem', borderRadius: '80px',
+                        '&:hover': {
+                            backgroundColor: '#adacac', // Change to your desired hover color
+                        },
+                    }}>Ask</Button>
+                    <Button variant="contained" sx={{
+                        backgroundColor: theme.palette.lightWhite.main, color: 'black', minWidth: '8rem', borderRadius: '80px',
+                        '&:hover': {
+                            backgroundColor: '#adacac', // Change to your desired hover color
+                        },
+                    }}>Save</Button>
                 </Box>
             </Box>
         </Box >
