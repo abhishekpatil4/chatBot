@@ -17,6 +17,11 @@ import MenuIcon from '@mui/icons-material/Menu';
 import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import { useTheme } from '@emotion/react';
+import TextField from '@mui/material/TextField';
+import { colors } from '@mui/material';
+import Input from '@mui/material/Input';
+
+
 
 const drawerWidth = 240;
 
@@ -96,8 +101,8 @@ function Home(props) {
                     >
                         <MenuIcon />
                     </IconButton>
-                    <Typography variant="h6" noWrap component="div">
-                        Responsive drawer
+                    <Typography variant="h4" noWrap component="div" sx={{ fontWeight: 600 }}>
+                        ChatBot
                     </Typography>
                 </Toolbar>
             </AppBar>
@@ -128,6 +133,7 @@ function Home(props) {
                     sx={{
                         display: { xs: 'none', sm: 'block' },
                         '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
+
                     }}
                     open
                 >
@@ -139,7 +145,7 @@ function Home(props) {
                 sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` }, backgroundColor: theme.palette.primary.main, height: '100vh' }}
             >
                 <Toolbar />
-                <Typography paragraph>
+                <Typography paragraph   >
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
                     tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
                     enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus
@@ -166,8 +172,26 @@ function Home(props) {
                     eleifend. Commodo viverra maecenas accumsan lacus vel facilisis. Nulla
                     posuere sollicitudin aliquam ultrices sagittis orci a.
                 </Typography>
+                <Box sx={{ display: 'flex', justifyContent: 'center' }}>
+                    {/* <TextField
+                        id="outlined-multiline-flexible"
+                        label="Enter question"
+                        multiline
+                        maxRows={4}
+                        sx={{ backgroundColor: theme.palette.tertiary.main, minWidth: '50rem' }}
+                    /> */}
+                    <Input disableUnderline placeholder='Message ChatBot' 
+                    sx={{ backgroundColor: theme.palette.tertiary.main, color:theme.palette.lightWhite.main, height: "3rem", border: '1px solid gray', borderRadius: '80px', minWidth: '50rem',
+                    padding:'2rem',
+                    boxShadow:3,
+                    position:'fixed',
+                    bottom:30
+
+                    }} />
+
+                </Box>
             </Box>
-        </Box>
+        </Box >
     );
 }
 export default Home;
