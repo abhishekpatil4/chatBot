@@ -67,31 +67,19 @@ function Home(props) {
                 <img src={newChatIcon} alt="new chat icon" />
             </Toolbar>
             <Divider />
-            <List sx={{ color: theme.palette.lightWhite.main }}>
-                {['Drafts'].map((text, index) => (
+            <List>
+                {['Past Conversation'].map((text, index) => (
                     <ListItem key={text} disablePadding>
                         <ListItemButton>
                             <ListItemIcon>
-                                {index % 2 === 0 ? <InboxIcon sx={{ color: theme.palette.lightWhite.main }} /> : <MailIcon sx={{ color: theme.palette.lightWhite.main }} />}
+                                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
                             </ListItemIcon>
-                            <ListItemText primary={text} />
+                            <ListItemText primary={text} sx={{ fontWeight: 600 }} />
                         </ListItemButton>
                     </ListItem>
                 ))}
             </List>
-            {/* <Divider />
-            <List sx={{ color: theme.palette.lightWhite.main }} >
-                {['All mail', 'Trash', 'Spam'].map((text, index) => (
-                    <ListItem key={text} disablePadding>
-                        <ListItemButton>
-                            <ListItemIcon>
-                                {index % 2 === 0 ? <InboxIcon sx={{ color: theme.palette.lightWhite.main }} /> : <MailIcon sx={{ color: theme.palette.lightWhite.main }} />}
-                            </ListItemIcon>
-                            <ListItemText primary={text} />
-                        </ListItemButton>
-                    </ListItem>
-                ))}
-            </List> */}
+            {/* <Divider /> */}
         </Box>
     );
 
@@ -108,7 +96,7 @@ function Home(props) {
                     ml: {
                         sm: `${drawerWidth}px`,
                     },
-                    backgroundColor: theme.palette.lightPurple.main,
+                    backgroundColor: { xs: 'white', sm: theme.palette.lightPurple.main },
                     boxShadow: 'none'
                 }}
             >
@@ -118,7 +106,7 @@ function Home(props) {
                         aria-label="open drawer"
                         edge="start"
                         onClick={handleDrawerToggle}
-                        sx={{ mr: 2, display: { sm: 'none' } }}
+                        sx={{ mr: 2, display: { sm: 'none' }, color: theme.palette.vdarkPurple.main }}
                     >
                         <MenuIcon />
                     </IconButton>
@@ -163,7 +151,11 @@ function Home(props) {
             </Box>
             <Box
                 component="main"
-                sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` }, backgroundColor: theme.palette.lightPurple.main, height: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center' }}
+                sx={{
+                    flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` },
+                    background: 'linear-gradient(180deg, rgba(215, 199, 244, 0.2) 0%, rgba(151, 133, 186, 0.2) 100%)'
+                    , height: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center'
+                }}
             >
                 <Toolbar />
                 <Typography paragraph>
@@ -195,24 +187,23 @@ function Home(props) {
                 </Typography>
                 <Box sx={{
                     display: 'flex', justifyContent: 'center', position: 'fixed',
-                    bottom: 30,
-                    gap: 2
+                    bottom: 0, gap: 2, padding: '1rem 1rem 1rem 1rem',
                 }}>
                     <Input disableUnderline placeholder='Message ChatBot'
                         sx={{
-                            backgroundColor: 'white', height: "1rem", border: '1px solid gray', borderRadius: '5px', minWidth: '50rem',
+                            backgroundColor: 'white', height: "1rem", border: '1px solid gray', borderRadius: '5px', minWidth: { md: '25rem', lg: '40rem' },
                             padding: '1.5rem',
                         }} />
                     <Button variant="contained" sx={{
-                        backgroundColor: theme.palette.darkPurple.main, color: 'black', minWidth: '8rem', borderRadius: '5px', fontWeight: 600, textTransform: 'none',
+                        backgroundColor: theme.palette.darkPurple.main, color: 'black', minWidth: { md: '8rem' }, borderRadius: '5px', fontWeight: 600, textTransform: 'none',
                         '&:hover': {
-                            backgroundColor: '#adacac', // Change to your desired hover color
+                            backgroundColor: theme.palette.vdarkPurple.main,
                         },
                     }}>Ask</Button>
                     <Button variant="contained" sx={{
-                        backgroundColor: theme.palette.darkPurple.main, color: 'black', minWidth: '8rem', borderRadius: '5px', fontWeight: 600, textTransform: 'none',
+                        backgroundColor: theme.palette.darkPurple.main, color: 'black', minWidth: { md: '8rem' }, borderRadius: '5px', fontWeight: 600, textTransform: 'none',
                         '&:hover': {
-                            backgroundColor: '#adacac', // Change to your desired hover color
+                            backgroundColor: theme.palette.vdarkPurple.main,
                         },
                     }}>Save</Button>
                 </Box>
