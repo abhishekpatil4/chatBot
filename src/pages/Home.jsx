@@ -25,14 +25,7 @@ import data from "../assets/sampleData.json"
 import { useEffect } from 'react';
 import newChatIcon from "../assets/newChatIcon.svg";
 import icon from "../assets/icon.png"
-import Grid from '@mui/material/Grid';
-// import ExampleMessageBox from '../components/ExampleMessageBox';
-import ExampleMessageBox from '../components/ExampleMessageBox';
-
-
-const exampleMsg = ["Hi, what is the weather", "Hi, what is my location", "Hi, what is the temperature", "Hi, how are you"]
-
-
+import Message from "../components/Message"
 
 const drawerWidth = 240;
 
@@ -164,23 +157,12 @@ function Home(props) {
                 }}
             >
                 <Toolbar />
-                <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', marginTop: {md:'0rem', lg: '8rem' } }}>
-                    <Typography sx={{ fontWeight: 600, fontSize: '28px' }}>
-                        How Can I Help You Today?
-                    </Typography>
-                    <Box sx={{ height: "65px", width: '65px', borderRadius: '100%', overflow: 'hidden', boxShadow: 3, margin: '1rem' }}>
-                        <img src={icon} alt="logon icon" style={{ objectFit: 'fit', width: '150px' }} />
-                    </Box>
-                    <Box sx={{ width: '100%', marginTop: {xs:'2rem', lg:'5rem'} }}>
-                        <Grid container rowSpacing={{xs:1, lg:4}} columnSpacing={{ xs: 1, sm: 2, md: 0 }}>
-                            {
-                                exampleMsg.map((message, idx) =>
-                                    <ExampleMessageBox key={idx} message={message}/>
-                                )
-                            }
-                        </Grid>
-                    </Box>
+                <Box>
+                    <Message type={"user"} message={"Hi!"}/>
+                    <Message type={"bot"} message={"Hey Abhishek! How are you doing?"}/>
                 </Box>
+                {/* <WelcomeMessage /> */}
+
                 {/* <Typography paragraph>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
                     tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
