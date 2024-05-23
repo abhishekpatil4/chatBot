@@ -4,7 +4,7 @@ import { Grid } from "@mui/material";
 
 const ExampleMessageBox = ({ message }) => {
     return <Grid item xs={12} lg={6}>
-        <Box sx={{ width: '512px', height: "112px", backgroundColor: 'white', borderRadius: '5px', padding: '0.5rem', boxShadow: 2, margin: 'auto' }}>
+        <Box sx={{ width: {xs:'80vw', sm:'512px'}, height: "112px", backgroundColor: 'white', borderRadius: '5px', padding: '0.5rem', boxShadow: 2, margin: 'auto' }}>
             <Typography sx={{ fontWeight: 700, fontSize: '20px', padding: '0.5rem' }}>
                 {message}
             </Typography>
