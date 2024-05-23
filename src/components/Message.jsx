@@ -6,7 +6,7 @@ import up from "../assets/thumbUp.svg";
 import down from "../assets/thumbDown.svg";
 
 const Message = ({ type, message }) => {
-    return <Box sx={{margin:'20px 0px', backgroundColor: '#D7C7F421', width: '80vw', height: "6rem", borderRadius: "20px", boxShadow: 1, display: 'flex', justifyContent: 'flex-start', alignItems: 'center', padding: '1.5rem' }}>
+    return <Box sx={{margin:'20px 0px', backgroundColor: '#D7C7F421', width: {xs:'80vw', sm:'60vw', lg:'80vw'}, height: "6rem", borderRadius: "20px", boxShadow: 1, display: 'flex', justifyContent: 'flex-start', alignItems: 'center', padding: '1.5rem' }}>
         {
             type === "user" ?
                 <Box sx={{ height: '65px', width: '65px' }}>
