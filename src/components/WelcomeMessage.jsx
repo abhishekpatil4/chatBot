@@ -24,7 +24,7 @@ const WelcomeMessage = () => {
                         if (isXs && idx === 2) {
                             return null;
                         }
-                        return <ExampleMessageBox key={idx} message={message} />
+                        return <ExampleMessageBox key={idx} message={message} id={idx}/>
                     })
                 }
             </Grid>
