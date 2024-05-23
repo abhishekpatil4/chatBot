@@ -21,10 +21,10 @@ import TextField from '@mui/material/TextField';
 import { colors } from '@mui/material';
 import Input from '@mui/material/Input';
 import Button from '@mui/material/Button';
-import data from "../../assets/sampleData.json"
+import data from "../assets/sampleData.json"
 import { useEffect } from 'react';
-import newChatIcon from "../../assets/newChatIcon.svg";
-import icon from "../../assets/icon.png"
+import newChatIcon from "../assets/newChatIcon.svg";
+import icon from "../assets/icon.png"
 import Grid from '@mui/material/Grid';
 
 
@@ -35,9 +35,9 @@ const exampleMsg = ["Hi, what is the weather", "Hi, what is my location", "Hi, w
 const drawerWidth = 240;
 
 function Home(props) {
-    useEffect(() => {
-        console.log("data: ", data);
-    }, []);
+    // useEffect(() => {
+    //     console.log("data: ", data);
+    // }, []);
     const theme = useTheme();
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
