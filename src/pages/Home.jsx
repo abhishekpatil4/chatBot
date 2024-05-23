@@ -26,10 +26,13 @@ import { useEffect } from 'react';
 import newChatIcon from "../assets/newChatIcon.svg";
 import icon from "../assets/icon.png"
 import Message from "../components/Message"
+import useViewportHeight from '../components/useViewPortHeight';
+import WelcomeMessage from "../components/WelcomeMessage";
 
 const drawerWidth = 240;
 
 function Home(props) {
+    useViewportHeight();
     // useEffect(() => {
     //     console.log("data: ", data);
     // }, []);
@@ -152,16 +155,38 @@ function Home(props) {
                 component="main"
                 sx={{
                     flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` },
-                    background: 'linear-gradient(180deg, rgba(215, 199, 244, 0.2) 0%, rgba(151, 133, 186, 0.2) 100%)'
-                    , height: '100vh', display: 'flex', flexDirection: 'column', alignItems: 'center'
+                    background: { xs: 'linear-gradient(180deg, #F9FAFA 59%, #EDE4FF 100%)', sm: 'linear-gradient(180deg, rgba(215, 199, 244, 0.2) 0%, rgba(151, 133, 186, 0.2) 100%)' },
+                    height: '100vh',
+                    // calc(var(--vh, 1vh) * 100)
+                    display: 'flex', flexDirection: 'column', alignItems: 'center'
                 }}
             >
                 <Toolbar />
-                <Box>
-                    <Message type={"user"} message={"Hi!"}/>
-                    <Message type={"bot"} message={"Hey Abhishek! How are you doing?"}/>
-                </Box>
-                {/* <WelcomeMessage /> */}
+                {/* <Box>
+                    <Message type={"user"} message={"Hi!"} />
+                    <Message type={"bot"} message={"Hey Abhishek! How are you doing?"} />
+                    <Message type={"user"} message={"Hi!"} />
+                    <Message type={"bot"} message={"Hey Abhishek! How are you doing?"} />
+                    <Message type={"user"} message={"Hi!"} />
+                    <Message type={"bot"} message={"Hey Abhishek! How are you doing?"} />
+                    <Message type={"user"} message={"Hi!"} />
+                    <Message type={"bot"} message={"Hey Abhishek! How are you doing?"} />
+                    <Message type={"user"} message={"Hi!"} />
+                    <Message type={"bot"} message={"Hey Abhishek! How are you doing?"} />
+                    <Message type={"user"} message={"Hi!"} />
+                    <Message type={"bot"} message={"Hey Abhishek! How are you doing?"} />
+                    <Message type={"user"} message={"Hi!"} />
+                    <Message type={"bot"} message={"Hey Abhishek! How are you doing?"} />
+                    <Message type={"user"} message={"Hi!"} />
+                    <Message type={"bot"} message={"Hey Abhishek! How are you doing?"} />
+                    <Message type={"user"} message={"Hi!"} />
+                    <Message type={"bot"} message={"Hey Abhishek! How are you doing?"} />
+                    <Message type={"user"} message={"Hi!"} />
+                    <Message type={"bot"} message={"Hey Abhishek! How are you doing?"} />
+                    <Message type={"user"} message={"Hi!"} />
+                    <Message type={"bot"} message={"Hey Abhishek! How are you doing?"} />
+                </Box> */}
+                <WelcomeMessage />
 
                 {/* <Typography paragraph>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
