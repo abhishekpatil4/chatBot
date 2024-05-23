@@ -28,6 +28,9 @@ import icon from "../assets/icon.png"
 import Message from "../components/Message"
 import useViewportHeight from '../components/useViewPortHeight';
 import WelcomeMessage from "../components/WelcomeMessage";
+import { useState } from 'react';
+import CurrentMessages from '../components/CurrentMessages';
+// import { ContextForWelcomeMsg } from "./components/ContextForWelcomeMsg"
 
 const drawerWidth = 240;
 
@@ -40,6 +43,7 @@ function Home(props) {
     const { window } = props;
     const [mobileOpen, setMobileOpen] = React.useState(false);
     const [isClosing, setIsClosing] = React.useState(false);
+    const [showWelcomeMsg, setShowWelcomeMsg] = useState(true);
 
     const handleDrawerClose = () => {
         setIsClosing(true);
@@ -186,7 +190,11 @@ function Home(props) {
                     <Message type={"user"} message={"Hi!"} />
                     <Message type={"bot"} message={"Hey Abhishek! How are you doing?"} />
                 </Box> */}
-                <WelcomeMessage />
+                {showWelcomeMsg ?
+                    <WelcomeMessage setShowWelcomeMsg={setShowWelcomeMsg} />
+                    :
+                    <CurrentMessages />
+                }
 
                 {/* <Typography paragraph>
                     Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod

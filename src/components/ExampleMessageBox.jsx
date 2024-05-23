@@ -15,28 +15,24 @@ function getCurrentTime() {
     return formattedTime;
 }
 
-const ExampleMessageBox = ({ message, id }) => {
+const ExampleMessageBox = ({ message, id, setShowWelcomeMsg }) => {
     const handleClick = () => {
-        console.log("id: ", data[50 + id].id);
-        console.log("question: ", data[50 + id].question);
-        console.log("response: ", data[50 + id].response);
+        setShowWelcomeMsg(false);
         const time = getCurrentTime();
-
         if (localStorage.getItem("messages")) {
             let arr = JSON.parse(localStorage.getItem("messages"));
-            let newData = [
-                {
-                    type: "user",
-                    message: data[50 + id].question,
-                    time: time
-                },
-                {
-                    type: "bot",
-                    message: data[50 + id].response,
-                    time: time
-                },
-            ];
-            arr.push(newData);
+            console.log("arr: ", arr);
+            arr.push({
+                type: "user",
+                message: data[50 + id].question,
+                time: time
+            })
+            arr.push({
+                type: "bot",
+                message: data[50 + id].response,
+                time: time
+            })
+            console.log("arr: ", arr);
             localStorage.setItem("messages", JSON.stringify(arr));
         } else {
             let arr = [
@@ -54,7 +50,7 @@ const ExampleMessageBox = ({ message, id }) => {
             localStorage.setItem("messages", JSON.stringify(arr));
         }
     }
-    return <Grid item xs={12} lg={6} onClick={handleClick} sx={{cursor:'pointer'}}>
+    return <Grid item xs={12} lg={6} onClick={handleClick} sx={{ cursor: 'pointer' }}>
         <Box sx={{ width: { xs: '80vw', sm: '512px' }, height: "112px", backgroundColor: 'white', borderRadius: '5px', padding: '0.5rem', boxShadow: 2, margin: 'auto' }}>
             <Typography sx={{ fontWeight: 700, fontSize: '20px', padding: '0.5rem' }}>
                 {message}
