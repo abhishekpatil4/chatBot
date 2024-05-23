@@ -256,13 +256,13 @@
     },
     {
       "id": 52,
-      "question": "Hi, what is the temperature?",
-      "response": "Hi, which temperature are you talking about?"
+      "question": "Hi, what is my location?",
+      "response": "I don't have location access."
     },
     {
       "id": 53,
-      "question": "Hi, what is my location?",
-      "response": "I don't have location access."
+      "question": "Hi, what is the temperature?",
+      "response": "Hi, which temperature are you talking about?"
     },
     {
       "id": 54,
