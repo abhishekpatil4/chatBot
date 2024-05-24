@@ -74,16 +74,13 @@ function Home(props) {
             </Toolbar>
             <Divider />
             <List>
-                {['Past Conversation'].map((text, index) => (
-                    <ListItem key={text} disablePadding>
-                        <ListItemButton>
-                            <ListItemIcon>
-                                {index % 2 === 0 ? <InboxIcon /> : <MailIcon />}
-                            </ListItemIcon>
-                            <ListItemText primary={text} sx={{ fontWeight: 600 }} />
-                        </ListItemButton>
-                    </ListItem>
-                ))}
+                <ListItem>
+                    <ListItemButton sx={{ borderRadius: '10px', backgroundColor: theme.palette.darkPurple.main }}>
+                        <ListItemText sx={{ textAlign: "center" }}>
+                            <span style={{color:'#414146', fontWeight: 700 }}>Past Conversation</span>
+                        </ListItemText>
+                    </ListItemButton>
+                </ListItem>
             </List>
             {/* <Divider /> */}
         </Box>
