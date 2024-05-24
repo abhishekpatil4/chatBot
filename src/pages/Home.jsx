@@ -30,11 +30,13 @@ import useViewportHeight from '../components/useViewPortHeight';
 import WelcomeMessage from "../components/WelcomeMessage";
 import { useState } from 'react';
 import CurrentMessages from '../components/CurrentMessages';
+import { useNavigate } from 'react-router-dom';
 // import { ContextForWelcomeMsg } from "./components/ContextForWelcomeMsg"
 
 const drawerWidth = 240;
 
 function Home(props) {
+    const navigate = useNavigate();
     useViewportHeight();
     // useEffect(() => {
     //     console.log("data: ", data);
@@ -75,9 +77,13 @@ function Home(props) {
             <Divider />
             <List>
                 <ListItem>
-                    <ListItemButton sx={{ borderRadius: '10px', backgroundColor: theme.palette.darkPurple.main }}>
+                    <ListItemButton onClick={() => navigate('/history')} sx={{
+                        borderRadius: '10px', backgroundColor: theme.palette.darkPurple.main, '&:hover': {
+                            backgroundColor: theme.palette.vdarkPurple.main,
+                        },
+                    }}>
                         <ListItemText sx={{ textAlign: "center" }}>
-                            <span style={{color:'#414146', fontWeight: 700 }}>Past Conversation</span>
+                            <span style={{ color: '#414146', fontWeight: 700 }}>Past Conversation</span>
                         </ListItemText>
                     </ListItemButton>
                 </ListItem>
@@ -163,50 +169,12 @@ function Home(props) {
                 }}
             >
                 <Toolbar />
-                {/* <Box>
-                    <Message type={"user"} message={"Hi!"} />
-                    <Message type={"bot"} message={"Hey Abhishek! How are you doing?"} />
-                    <Message type={"user"} message={"Hi!"} />
-                    <Message type={"bot"} message={"Hey Abhishek! How are you doing?"} />
-                    <Message type={"user"} message={"Hi!"} />
-                    <Message type={"bot"} message={"Hey Abhishek! How are you doing?"} />
-                    <Message type={"user"} message={"Hi!"} />
-                    <Message type={"bot"} message={"Hey Abhishek! How are you doing?"} />
-                    <Message type={"user"} message={"Hi!"} />
-                    <Message type={"bot"} message={"Hey Abhishek! How are you doing?"} />
-                    <Message type={"user"} message={"Hi!"} />
-                    <Message type={"bot"} message={"Hey Abhishek! How are you doing?"} />
-                    <Message type={"user"} message={"Hi!"} />
-                    <Message type={"bot"} message={"Hey Abhishek! How are you doing?"} />
-                    <Message type={"user"} message={"Hi!"} />
-                    <Message type={"bot"} message={"Hey Abhishek! How are you doing?"} />
-                    <Message type={"user"} message={"Hi!"} />
-                    <Message type={"bot"} message={"Hey Abhishek! How are you doing?"} />
-                    <Message type={"user"} message={"Hi!"} />
-                    <Message type={"bot"} message={"Hey Abhishek! How are you doing?"} />
-                    <Message type={"user"} message={"Hi!"} />
-                    <Message type={"bot"} message={"Hey Abhishek! How are you doing?"} />
-                </Box> */}
                 {showWelcomeMsg ?
                     <WelcomeMessage setShowWelcomeMsg={setShowWelcomeMsg} />
                     :
                     <CurrentMessages />
                 }
 
-                {/* <Typography paragraph>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                    tempor incididunt ut labore et dolore magna aliqua. Rhoncus dolor purus non
-                    enim praesent elementum facilisis leo vel. Risus at ultrices mi tempus
-                    imperdiet. Semper risus in hendrerit gravida rutrum quisque non tellus.
-                    Convallis convallis tellus id interdum velit laoreet id donec ultrices.
-                    Odio morbi quis commodo odio aenean sed adipiscing. Amet nisl suscipit
-                    adipiscing bibendum est ultricies integer quis. Cursus euismod quis viverra
-                    nibh cras. Metus vulputate eu scelerisque felis imperdiet proin fermentum
-                    leo. Mauris commodo quis imperdiet massa tincidunt. Cras tincidunt lobortis
-                    feugiat vivamus at augue. At augue eget arcu dictum varius duis at
-                    consectetur lorem. Velit sed ullamcorper morbi tincidunt. Lorem donec massa
-                    sapien faucibus et molestie ac.
-                </Typography> */}
                 <Box sx={{
                     display: 'flex', justifyContent: 'center', position: 'fixed',
                     bottom: 0, gap: 2, padding: '1rem 1rem 1rem 1rem',
