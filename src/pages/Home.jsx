@@ -31,66 +31,18 @@ import WelcomeMessage from "../components/WelcomeMessage";
 import { useState } from 'react';
 import CurrentMessages from '../components/CurrentMessages';
 import { useNavigate } from 'react-router-dom';
+import SideBar from '../components/SideBar';
 // import { ContextForWelcomeMsg } from "./components/ContextForWelcomeMsg"
 
 const drawerWidth = 240;
 
-function Home(props) {
-    const navigate = useNavigate();
+function Home({ window }) {
     useViewportHeight();
     // useEffect(() => {
     //     console.log("data: ", data);
     // }, []);
     const theme = useTheme();
-    const { window } = props;
-    const [mobileOpen, setMobileOpen] = React.useState(false);
-    const [isClosing, setIsClosing] = React.useState(false);
     const [showWelcomeMsg, setShowWelcomeMsg] = useState(true);
-
-    const handleDrawerClose = () => {
-        setIsClosing(true);
-        setMobileOpen(false);
-    };
-
-    const handleDrawerTransitionEnd = () => {
-        setIsClosing(false);
-    };
-
-    const handleDrawerToggle = () => {
-        if (!isClosing) {
-            setMobileOpen(!mobileOpen);
-        }
-    };
-
-    //background: 'linear-gradient(180deg, rgba(215, 199, 244, 0.2) 0%, rgba(151, 133, 186, 0.2) 100%)'
-
-    //this is for sidebar
-    const drawer = (
-        <Box sx={{ backgroundColor: 'white', height: '100vh' }}>
-            <Toolbar sx={{ backgroundColor: theme.palette.darkPurple.main, justifyContent: 'space-between' }}>
-                <Box sx={{ height: "32px", width: '32px', borderRadius: '10px', overflow: 'hidden' }}>
-                    <img src={icon} alt="logon icon" style={{ objectFit: 'fit', width: '150px' }} />
-                </Box>
-                <Typography sx={{ fontWeight: 600 }}>New Chat</Typography>
-                <img src={newChatIcon} alt="new chat icon" />
-            </Toolbar>
-            <Divider />
-            <List>
-                <ListItem>
-                    <ListItemButton onClick={() => navigate('/history')} sx={{
-                        borderRadius: '10px', backgroundColor: theme.palette.darkPurple.main, '&:hover': {
-                            backgroundColor: theme.palette.vdarkPurple.main,
-                        },
-                    }}>
-                        <ListItemText sx={{ textAlign: "center" }}>
-                            <span style={{ color: '#414146', fontWeight: 700 }}>Past Conversation</span>
-                        </ListItemText>
-                    </ListItemButton>
-                </ListItem>
-            </List>
-            {/* <Divider /> */}
-        </Box>
-    );
 
     // Remove this const when copying and pasting into your project.
     const container = window !== undefined ? () => window().document.body : undefined;
@@ -99,72 +51,7 @@ function Home(props) {
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
 
-            {/* this is for sidebar */}
-            <AppBar
-                position="fixed"
-                sx={{
-                    width: { sm: `calc(100% - ${drawerWidth}px)` },
-                    ml: {
-                        sm: `${drawerWidth}px`,
-                    },
-                    backgroundColor: { xs: 'white', sm: theme.palette.lightPurple.main },
-                    boxShadow: 'none'
-                }}
-            >
-                <Toolbar>
-                    {/* this IconButton is for sidebar in mobile view  (menu button) */}
-                    <IconButton
-                        color="inherit"
-                        aria-label="open drawer"
-                        edge="start"
-                        onClick={handleDrawerToggle}
-                        sx={{ mr: 2, display: { sm: 'none' }, color: theme.palette.vdarkPurple.main }}
-                    >
-                        <MenuIcon />
-                    </IconButton>
-                    <Typography variant="h4" noWrap component="div" sx={{ fontWeight: 600, color: theme.palette.vdarkPurple.main }}>
-                        Bot AI
-                    </Typography>
-                </Toolbar>
-            </AppBar>
-
-            <Box
-                component="nav"
-                sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-                aria-label="mailbox folders"
-            >
-                {/* this is for mobile view, and can be opened or closed */}
-                <Drawer
-                    container={container}
-                    variant="temporary"
-                    open={mobileOpen}
-                    onTransitionEnd={handleDrawerTransitionEnd}
-                    onClose={handleDrawerClose}
-                    ModalProps={{
-                        keepMounted: true, // Better open performance on mobile.
-                    }}
-                    sx={{
-                        display: { xs: 'block', sm: 'none' },
-                        '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
-                    }}
-                >
-                    {drawer}
-                </Drawer>
-
-                {/* this is for normal view */}
-                <Drawer
-                    variant="permanent"
-                    sx={{
-                        display: { xs: 'none', sm: 'block' },
-                        '& .MuiDrawer-paper': { boxSizing: 'border-box', width: drawerWidth },
-
-                    }}
-                    open
-                >
-                    {drawer}
-                </Drawer>
-            </Box>
-
+            <SideBar window={window} />
             {/* this is the message box */}
             <Box
                 component="main"
