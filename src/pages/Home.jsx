@@ -47,6 +47,22 @@ function Home({ window }) {
     // Remove this const when copying and pasting into your project.
     const container = window !== undefined ? () => window().document.body : undefined;
 
+    const handleSave = () => {
+        const saveMessage = async () => {
+            let messages = await JSON.parse(localStorage.getItem("messages"));
+            if (localStorage.getItem("messageHistory")) {
+                let arr = await JSON.parse(localStorage.getItem("messageHistory"));
+                arr.push(messages);
+                localStorage.setItem("messageHistory", JSON.stringify(arr));
+            } else {
+                let arr = [messages];
+                localStorage.setItem("messageHistory", JSON.stringify(arr));
+            }
+            localStorage.removeItem("messages");
+        }
+        saveMessage();
+    }
+
     return (
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
@@ -58,8 +74,8 @@ function Home({ window }) {
                 sx={{
                     flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` },
                     background: { xs: 'linear-gradient(180deg, #F9FAFA 59%, #EDE4FF 100%)', sm: 'linear-gradient(180deg, rgba(215, 199, 244, 0.2) 0%, rgba(151, 133, 186, 0.2) 100%)' },
-                    height: '100vh',
-                    // calc(var(--vh, 1vh) * 100)
+                    // height: '100vh',
+                    // height:'calc(var(--vh, 1vh) * 100)',
                     display: 'flex', flexDirection: 'column', alignItems: 'center'
                 }}
             >
@@ -85,7 +101,7 @@ function Home({ window }) {
                             backgroundColor: theme.palette.vdarkPurple.main,
                         },
                     }}>Ask</Button>
-                    <Button variant="contained" sx={{
+                    <Button variant="contained" onClick={handleSave} sx={{
                         backgroundColor: theme.palette.darkPurple.main, color: 'black', minWidth: { md: '8rem' }, borderRadius: '5px', fontWeight: 600, textTransform: 'none',
                         '&:hover': {
                             backgroundColor: theme.palette.vdarkPurple.main,
