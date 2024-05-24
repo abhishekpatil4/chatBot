@@ -64,7 +64,7 @@ function Home(props) {
 
     //background: 'linear-gradient(180deg, rgba(215, 199, 244, 0.2) 0%, rgba(151, 133, 186, 0.2) 100%)'
 
-
+    //this is for sidebar
     const drawer = (
         <Box sx={{ backgroundColor: 'white', height: '100vh' }}>
             <Toolbar sx={{ backgroundColor: theme.palette.darkPurple.main, justifyContent: 'space-between' }}>
@@ -98,6 +98,8 @@ function Home(props) {
     return (
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
+
+            {/* this is for sidebar */}
             <AppBar
                 position="fixed"
                 sx={{
@@ -110,6 +112,7 @@ function Home(props) {
                 }}
             >
                 <Toolbar>
+                    {/* this IconButton is for sidebar in mobile view  (menu button) */}
                     <IconButton
                         color="inherit"
                         aria-label="open drawer"
@@ -124,12 +127,13 @@ function Home(props) {
                     </Typography>
                 </Toolbar>
             </AppBar>
+
             <Box
                 component="nav"
                 sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
                 aria-label="mailbox folders"
             >
-                {/* The implementation can be swapped with js to avoid SEO duplication of links. */}
+                {/* this is for mobile view, and can be opened or closed */}
                 <Drawer
                     container={container}
                     variant="temporary"
@@ -146,6 +150,8 @@ function Home(props) {
                 >
                     {drawer}
                 </Drawer>
+
+                {/* this is for normal view */}
                 <Drawer
                     variant="permanent"
                     sx={{
@@ -158,6 +164,8 @@ function Home(props) {
                     {drawer}
                 </Drawer>
             </Box>
+
+            {/* this is the message box */}
             <Box
                 component="main"
                 sx={{
