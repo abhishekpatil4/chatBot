@@ -8,7 +8,7 @@ import MessageInHistory from "../components/MessageInHistory";
 
 const drawerWidth = 240;
 
-const PastConversation = ({ window }) => {
+const PastConversation = ({ window, showWelcomeMsg, setShowWelcomeMsg }) => {
     const theme = useTheme();
     const [messageHistory, setMessageHistory] = useState([]);
     useEffect(() => {
@@ -22,7 +22,7 @@ const PastConversation = ({ window }) => {
     }, []);
 
     return <Box sx={{ display: 'flex' }}>
-        <SideBar window={window} history={true} />
+        <SideBar window={window} history={true} setShowWelcomeMsg={setShowWelcomeMsg}/>
         <Box component="main"
             sx={{
                 flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` },
@@ -36,8 +36,10 @@ const PastConversation = ({ window }) => {
             </Typography>
             {
                 messageHistory.length > 0 ? messageHistory.map((msg, idx) => {
-                    return <Box key={idx} sx={{margin:'1rem 0rem', background: 'linear-gradient(90deg, #BFACE2 0%, #D7C7F4 100%)'
-                        , padding:'1rem', borderRadius:'10px'}}>
+                    return <Box key={idx} sx={{
+                        margin: '1rem 0rem', background: 'linear-gradient(90deg, #BFACE2 0%, #D7C7F4 100%)'
+                        , padding: '1rem', borderRadius: '10px'
+                    }}>
                         {
                             msg.map((m, idx) =>
                                 <MessageInHistory key={idx} type={m.type} message={m.message} />
@@ -45,10 +47,10 @@ const PastConversation = ({ window }) => {
                         }
                     </Box>
                 })
-                :
-                <Box sx={{textAlign:"center"}}>
-                    No data
-                </Box>
+                    :
+                    <Box sx={{ textAlign: "center" }}>
+                        No data
+                    </Box>
             }
         </Box >
     </Box>

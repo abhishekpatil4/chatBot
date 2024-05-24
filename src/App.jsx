@@ -2,12 +2,14 @@
 import { Routes, Route } from "react-router-dom"
 import Home from "./pages/Home"
 import PastConversation from "./pages/PastConversation"
+import { useState } from "react";
 
 function App() {
+  const [showWelcomeMsg, setShowWelcomeMsg] = useState(true);
   return <>
     <Routes>
-      <Route path="/" element={<Home />} />
-      <Route path="/history" element={<PastConversation />} />
+      <Route path="/" element={<Home showWelcomeMsg={showWelcomeMsg} setShowWelcomeMsg={setShowWelcomeMsg} />} />
+      <Route path="/history" element={<PastConversation showWelcomeMsg={showWelcomeMsg} setShowWelcomeMsg={setShowWelcomeMsg} />} />
     </Routes>
   </>
 }

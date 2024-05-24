@@ -36,13 +36,13 @@ import SideBar from '../components/SideBar';
 
 const drawerWidth = 240;
 
-function Home({ window }) {
+function Home({ window, showWelcomeMsg, setShowWelcomeMsg }) {
     useViewportHeight();
     // useEffect(() => {
     //     console.log("data: ", data);
     // }, []);
     const theme = useTheme();
-    const [showWelcomeMsg, setShowWelcomeMsg] = useState(true);
+
 
     // Remove this const when copying and pasting into your project.
     const container = window !== undefined ? () => window().document.body : undefined;
@@ -67,14 +67,14 @@ function Home({ window }) {
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
 
-            <SideBar window={window} />
+            <SideBar window={window} setShowWelcomeMsg={setShowWelcomeMsg}/>
             {/* this is the message box */}
             <Box
                 component="main"
                 sx={{
                     flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` },
                     background: { xs: 'linear-gradient(180deg, #F9FAFA 59%, #EDE4FF 100%)', sm: 'linear-gradient(180deg, rgba(215, 199, 244, 0.2) 0%, rgba(151, 133, 186, 0.2) 100%)' },
-                    // height: '100vh',
+                    height: '100vh',
                     // height:'calc(var(--vh, 1vh) * 100)',
                     display: 'flex', flexDirection: 'column', alignItems: 'center'
                 }}

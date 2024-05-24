@@ -20,16 +20,20 @@ import { useMediaQuery } from "@mui/material";
 
 const drawerWidth = 240;
 
-const SideBar = ({ window, history = false }) => {
+const SideBar = ({ window, history = false, setShowWelcomeMsg }) => {
     const isSmall = useMediaQuery(theme => theme.breakpoints.down('md'))
     const theme = useTheme();
     const navigate = useNavigate();
     const [mobileOpen, setMobileOpen] = useState(false);
     const [isClosing, setIsClosing] = useState(false);
+    const handleNewChat = () =>{
+        setShowWelcomeMsg(true);
+        navigate("/");
+    }
     //this is for sidebar
     const drawer = (
         <Box sx={{ backgroundColor: 'white', height: '100vh' }}>
-            <Toolbar sx={{ backgroundColor: theme.palette.darkPurple.main, justifyContent: 'space-between' }}>
+            <Toolbar onClick={handleNewChat} sx={{cursor:'pointer', backgroundColor: theme.palette.darkPurple.main, justifyContent: 'space-between' }}>
                 <Box sx={{ height: "32px", width: '32px', borderRadius: '10px', overflow: 'hidden' }}>
                     <img src={icon} alt="logon icon" style={{ objectFit: 'fit', width: '150px' }} />
                 </Box>
