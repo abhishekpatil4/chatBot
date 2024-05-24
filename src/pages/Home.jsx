@@ -36,12 +36,62 @@ import SideBar from '../components/SideBar';
 
 const drawerWidth = 240;
 
-function Home({ window, showWelcomeMsg, setShowWelcomeMsg }) {
+function getCurrentTime() {
+    const currentDate = new Date();
+    let hours = currentDate.getHours();
+    let minutes = currentDate.getMinutes();
+    let meridiem = hours >= 12 ? 'PM' : 'AM';
+    hours = hours % 12;
+    hours = hours ? hours : 12;
+    minutes = minutes < 10 ? '0' + minutes : minutes;
+    const formattedTime = `${hours}:${minutes} ${meridiem}`;
+    return formattedTime;
+}
+
+const Home = ({ window, showWelcomeMsg, setShowWelcomeMsg }) => {
+    const [message, setMessage] = useState("");
     useViewportHeight();
-    // useEffect(() => {
-    //     console.log("data: ", data);
-    // }, []);
     const theme = useTheme();
+
+    const handleAdd = () => {
+        let resObj = data?.find((d) => d.question === message.trim());
+        if(resObj === undefined){
+            resObj = {
+                response: "Error... try a different message."
+            }
+        }
+        const time = getCurrentTime();
+        setMessage("");
+        if (localStorage.getItem("messages")) {
+            let arr = JSON.parse(localStorage.getItem("messages"));
+            arr.push({
+                type: "user",
+                message: message.trim(),
+                time: time
+            })
+            arr.push({
+                type: "bot",
+                message: resObj.response,
+                time: time
+            })
+            localStorage.setItem("messages", JSON.stringify(arr));
+        } else {
+            let arr = [
+                {
+                    type: "user",
+                    message: message.trim(),
+                    time: time
+                },
+                {
+                    type: "bot",
+                    message: resObj.response,
+                    time: time
+                },
+            ];
+            localStorage.setItem("messages", JSON.stringify(arr));
+        }
+        setShowWelcomeMsg(false);
+    }
 
 
     // Remove this const when copying and pasting into your project.
@@ -67,7 +117,7 @@ function Home({ window, showWelcomeMsg, setShowWelcomeMsg }) {
         <Box sx={{ display: 'flex' }}>
             <CssBaseline />
 
-            <SideBar window={window} setShowWelcomeMsg={setShowWelcomeMsg}/>
+            <SideBar window={window} setShowWelcomeMsg={setShowWelcomeMsg} />
             {/* this is the message box */}
             <Box
                 component="main"
@@ -90,12 +140,12 @@ function Home({ window, showWelcomeMsg, setShowWelcomeMsg }) {
                     display: 'flex', justifyContent: 'center', position: 'fixed',
                     bottom: 0, gap: 2, padding: '1rem 1rem 1rem 1rem',
                 }}>
-                    <Input disableUnderline placeholder='Message ChatBot'
+                    <Input disableUnderline placeholder='Message ChatBot' value={message} onChange={(e) => setMessage(e.target.value)}
                         sx={{
                             backgroundColor: 'white', height: "1rem", border: '1px solid gray', borderRadius: '5px', minWidth: { md: '25rem', lg: '40rem' },
                             padding: '1.5rem',
                         }} />
-                    <Button variant="contained" sx={{
+                    <Button onClick={handleAdd} variant="contained" sx={{
                         backgroundColor: theme.palette.darkPurple.main, color: 'black', minWidth: { md: '8rem' }, borderRadius: '5px', fontWeight: 600, textTransform: 'none',
                         '&:hover': {
                             backgroundColor: theme.palette.vdarkPurple.main,
