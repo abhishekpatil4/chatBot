@@ -16,10 +16,12 @@ import icon from "../assets/icon.png"
 import { useState } from 'react';
 import { useTheme } from "@emotion/react";
 import { useNavigate } from "react-router-dom";
+import { useMediaQuery } from "@mui/material";
 
 const drawerWidth = 240;
 
-const SideBar = ({window}) => {
+const SideBar = ({ window, history = false }) => {
+    const isSmall = useMediaQuery(theme => theme.breakpoints.down('md'))
     const theme = useTheme();
     const navigate = useNavigate();
     const [mobileOpen, setMobileOpen] = useState(false);
@@ -67,33 +69,73 @@ const SideBar = ({window}) => {
 
     return <>
         {/* this is for sidebar */}
-        <AppBar
-            position="fixed"
-            sx={{
-                width: { sm: `calc(100% - ${drawerWidth}px)` },
-                ml: {
-                    sm: `${drawerWidth}px`,
-                },
-                backgroundColor: { xs: 'white', sm: theme.palette.lightPurple.main },
-                boxShadow: 'none'
-            }}
-        >
-            <Toolbar>
-                {/* this IconButton is for sidebar in mobile view  (menu button) */}
-                <IconButton
-                    color="inherit"
-                    aria-label="open drawer"
-                    edge="start"
-                    onClick={handleDrawerToggle}
-                    sx={{ mr: 2, display: { sm: 'none' }, color: theme.palette.vdarkPurple.main }}
+        {
+            history ?
+                (isSmall &&
+                    <Box
+                        position="fixed"
+                        sx={{
+                            width: { sm: `calc(100% - ${drawerWidth}px)` },
+                            ml: {
+                                sm: `${drawerWidth}px`,
+                            },
+                            backgroundColor: { xs: "inherit", sm: !history && theme.palette.lightPurple.main },
+                            boxShadow: 'none'
+                        }}
+                    >
+                        <Toolbar>
+                            {/* this IconButton is for sidebar in mobile view  (menu button) */}
+                            <IconButton
+                                color="inherit"
+                                aria-label="open drawer"
+                                edge="start"
+                                onClick={handleDrawerToggle}
+                                sx={{ mr: 2, display: { sm: 'none' }, color: theme.palette.vdarkPurple.main }}
+                            >
+                                <MenuIcon />
+                            </IconButton>
+                            {
+                                !history &&
+                                <Typography variant="h4" noWrap component="div" sx={{ fontWeight: 600, color: theme.palette.vdarkPurple.main }}>
+                                    Bot AI
+                                </Typography>
+                            }
+                        </Toolbar>
+                    </Box>
+                )
+                :
+                <AppBar
+                    position="fixed"
+                    sx={{
+                        width: { sm: `calc(100% - ${drawerWidth}px)` },
+                        ml: {
+                            sm: `${drawerWidth}px`,
+                        },
+                        backgroundColor: { xs: 'white', sm: !history && theme.palette.lightPurple.main },
+                        boxShadow: 'none'
+                    }}
                 >
-                    <MenuIcon />
-                </IconButton>
-                <Typography variant="h4" noWrap component="div" sx={{ fontWeight: 600, color: theme.palette.vdarkPurple.main }}>
-                    Bot AI
-                </Typography>
-            </Toolbar>
-        </AppBar>
+                    <Toolbar>
+                        {/* this IconButton is for sidebar in mobile view  (menu button) */}
+                        <IconButton
+                            color="inherit"
+                            aria-label="open drawer"
+                            edge="start"
+                            onClick={handleDrawerToggle}
+                            sx={{ mr: 2, display: { sm: 'none' }, color: theme.palette.vdarkPurple.main }}
+                        >
+                            <MenuIcon />
+                        </IconButton>
+                        {
+                            !history &&
+                            <Typography variant="h4" noWrap component="div" sx={{ fontWeight: 600, color: theme.palette.vdarkPurple.main }}>
+                                Bot AI
+                            </Typography>
+                        }
+                    </Toolbar>
+                </AppBar>
+        }
+
 
         {/* side bar */}
         <Box

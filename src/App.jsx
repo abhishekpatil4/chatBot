@@ -2,7 +2,6 @@
 import { Routes, Route } from "react-router-dom"
 import Home from "./pages/Home"
 import PastConversation from "./pages/PastConversation"
-import { useState } from "react"
 
 function App() {
   return <>
