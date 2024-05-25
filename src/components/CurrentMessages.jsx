@@ -17,7 +17,7 @@ const CurrentMessages = () => {
         {
             messages.length > 0 ?
                 messages.map((msg, idx) =>
-                    <Message key={idx} type={msg.type} message={msg.message} />
+                    <Message key={idx} id={msg.id} type={msg.type} message={msg.message} rating={msg.rating} feedback={msg.feedback} />
                 )
                 :
                 <h3>No data available</h3>
