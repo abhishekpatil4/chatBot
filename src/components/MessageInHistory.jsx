@@ -7,7 +7,7 @@ import down from "../assets/thumbDown.svg";
 import Rating from '@mui/material/Rating';
 
 const MessageInHistory = ({ type, message, rating, feedback }) => {
-    return <Box sx={{ margin: '20px 0px', width: { xs: '80vw', sm: '60vw', lg: '75vw' }, minHeight: "6rem", display: 'flex', justifyContent: 'flex-start', alignItems: 'center', padding: '0rem 0.8rem' }}>
+    return <Box sx={{ margin: '20px 0px', width: { xs: '80vw', sm: '60vw', lg: '75vw' }, minHeight: "6rem", display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start', padding: '0rem 0.8rem' }}>
         {
             type === "user" ?
                 <Box sx={{ height: '65px', width: '65px' }}>
