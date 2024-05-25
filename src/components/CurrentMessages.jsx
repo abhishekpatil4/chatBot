@@ -13,7 +13,7 @@ const CurrentMessages = () => {
         }
         getLocalData();
     }, []);
-    return <Box sx={{marginBottom:"4rem"}}>
+    return <Box sx={{marginBottom:"4rem", overflow:'scroll'}}>
         {
             messages.length > 0 ?
                 messages.map((msg, idx) =>
