@@ -4,9 +4,10 @@ import userImage from "../assets/userImage.png";
 import icon from "../assets/icon.png";
 import up from "../assets/thumbUp.svg";
 import down from "../assets/thumbDown.svg";
+import Rating from '@mui/material/Rating';
 
-const MessageInHistory = ({ type, message }) => {
-    return <Box sx={{margin:'20px 0px', width: {xs:'80vw', sm:'60vw', lg:'75vw'}, height: "6rem",  display: 'flex', justifyContent: 'flex-start', alignItems: 'center', padding: '0rem 0.8rem' }}>
+const MessageInHistory = ({ type, message, rating, feedback }) => {
+    return <Box sx={{ margin: '20px 0px', width: { xs: '80vw', sm: '60vw', lg: '75vw' }, minHeight: "6rem", display: 'flex', justifyContent: 'flex-start', alignItems: 'center', padding: '0rem 0.8rem' }}>
         {
             type === "user" ?
                 <Box sx={{ height: '65px', width: '65px' }}>
@@ -29,13 +30,20 @@ const MessageInHistory = ({ type, message }) => {
             </Typography>
             <Typography sx={{ display: "flex", gap: 1.8, fontSize: "12px", fontWeight: 400, lineHeight: '16px', color: "gray" }}>
                 10:33 AM
-                {type !== "user" &&
-                    <>
-                        <img src={up} alt="thumbs up icon" />
-                        <img src={down} alt="thumbs down icon" />
-                    </>
-                }
             </Typography>
+            {type !== "user" && rating>0 &&
+                <>
+                    <Box sx={{ margin: '0.2rem 0rem' }}>
+                        <Rating
+                            name="simple-controlled"
+                            value={rating}
+                        />
+                    </Box>
+                    {/* <Box>
+                        <Typography><span style={{fontWeight:700}}>Feedback:</span> {feedback}</Typography>
+                    </Box> */}
+                </>
+            }
         </Box>
     </Box>
 }

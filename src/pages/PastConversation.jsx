@@ -29,7 +29,7 @@ const PastConversation = ({ window, showWelcomeMsg, setShowWelcomeMsg }) => {
                 background: { xs: 'linear-gradient(180deg, #F9FAFA 59%, #EDE4FF 100%)', sm: 'linear-gradient(180deg, rgba(215, 199, 244, 0.2) 0%, rgba(151, 133, 186, 0.2) 100%)' },
                 height: '100vh',
                 // calc(var(--vh, 1vh) * 100)
-                display: 'flex', flexDirection: 'column', alignItems: 'center'
+                display: 'flex', flexDirection: 'column', alignItems: 'center', overflow:'scroll'
             }}>
             <Typography sx={{ fontSize: '28px', fontWeight: 400, textAlign: 'center', margin: '2rem 0rem' }}>
                 Conversation History
@@ -42,7 +42,7 @@ const PastConversation = ({ window, showWelcomeMsg, setShowWelcomeMsg }) => {
                     }}>
                         {
                             msg.map((m, idx) =>
-                                <MessageInHistory key={idx} type={m.type} message={m.message} />
+                                <MessageInHistory key={idx} type={m.type} message={m.message} rating={m.rating} feedback={m.feedback} />
                             )
                         }
                     </Box>
