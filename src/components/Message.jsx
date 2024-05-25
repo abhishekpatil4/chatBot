@@ -4,16 +4,20 @@ import userImage from "../assets/userImage.png";
 import icon from "../assets/icon.png";
 import up from "../assets/thumbUp.svg";
 import down from "../assets/thumbDown.svg";
+import Rating from '@mui/material/Rating';
+import { useState } from "react";
 
 const Message = ({ type, message }) => {
-    return <Box sx={{margin:'20px 0px', backgroundColor: '#D7C7F421', width: {xs:'80vw', sm:'60vw', lg:'80vw'}, minHeight: "6rem", borderRadius: "20px", boxShadow: 1, display: 'flex', justifyContent: 'flex-start', alignItems: 'center', padding: '1.5rem' }}>
+    const [value, setValue] = useState();
+    const [showRating, setShowRating] = useState(false);
+    return <Box sx={{ margin: '20px 0px', backgroundColor: '#D7C7F421', width: { xs: '80vw', sm: '60vw', lg: '80vw' }, minHeight: "6rem", borderRadius: "20px", boxShadow: 1, display: 'flex', justifyContent: 'flex-start', alignItems: 'center', padding: '1.5rem' }}>
         {
             type === "user" ?
-                <Box sx={{ height: '65px', width: '65px', flexShrink:0 }}>
+                <Box sx={{ height: '65px', width: '65px', flexShrink: 0 }}>
                     <img src={userImage} alt="user image" width="100%" height="100%" style={{ borderRadius: '100%' }} />
                 </Box>
                 :
-                <Box sx={{ height: "65px", width: '65px', borderRadius: '100%', overflow: 'hidden', boxShadow: 3, flexShrink:0 }}>
+                <Box sx={{ height: "65px", width: '65px', borderRadius: '100%', overflow: 'hidden', boxShadow: 3, flexShrink: 0 }}>
                     <img src={icon} alt="logon icon" style={{ objectFit: 'fit', width: '150px' }} />
                 </Box>
 
@@ -31,11 +35,23 @@ const Message = ({ type, message }) => {
                 10:33 AM
                 {type !== "user" &&
                     <>
-                        <img src={up} alt="thumbs up icon" />
+                        <img onClick={() => setShowRating((prev) => !prev)} src={up} alt="thumbs up icon" style={{cursor:'pointer'}}/>
                         <img src={down} alt="thumbs down icon" />
                     </>
                 }
             </Typography>
+            {type !== "user" && showRating &&
+                <Box sx={{ margin: '1rem 0rem' }}>
+                    <Typography component="legend">Rate this response</Typography>
+                    <Rating
+                        name="simple-controlled"
+                        value={value}
+                        onChange={(event, newValue) => {
+                            setValue(newValue);
+                        }}
+                    />
+                </Box>
+            }
         </Box>
     </Box>
 }
