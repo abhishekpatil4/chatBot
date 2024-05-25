@@ -13,7 +13,7 @@ const Message = ({ type, message, id, feedback, rating }) => {
 
     const [value, setValue] = useState(rating);
     const [showRating, setShowRating] = useState(false);
-    return <Box sx={{ margin: '20px 0px', backgroundColor: '#D7C7F421', width: { xs: '80vw', sm: '60vw', lg: '80vw' }, minHeight: "6rem", borderRadius: "20px", boxShadow: 1, display: 'flex', justifyContent: 'flex-start', alignItems: 'center', padding: '1.5rem' }}>
+    return <Box sx={{ margin: '20px 0px', backgroundColor: '#D7C7F421', width: { xs: '80vw', sm: '60vw', lg: '80vw' }, minHeight: "6rem", borderRadius: "20px", boxShadow: 1, display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start', padding: '1.5rem' }}>
         {
             type === "user" ?
                 <Box sx={{ height: '65px', width: '65px', flexShrink: 0 }}>
