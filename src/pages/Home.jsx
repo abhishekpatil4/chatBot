@@ -32,6 +32,8 @@ import { useState } from 'react';
 import CurrentMessages from '../components/CurrentMessages';
 import { useNavigate } from 'react-router-dom';
 import SideBar from '../components/SideBar';
+import uniqid from 'uniqid';
+
 // import { ContextForWelcomeMsg } from "./components/ContextForWelcomeMsg"
 
 const drawerWidth = 240;
@@ -55,37 +57,46 @@ const Home = ({ window, showWelcomeMsg, setShowWelcomeMsg }) => {
 
     const handleAdd = () => {
         let resObj = data?.find((d) => d.question === message.trim());
-        if(resObj === undefined){
+        if (resObj === undefined) {
             resObj = {
                 response: "Error... try a different message."
             }
         }
         const time = getCurrentTime();
+        const msgId = uniqid();
         setMessage("");
         if (localStorage.getItem("messages")) {
             let arr = JSON.parse(localStorage.getItem("messages"));
             arr.push({
+                id: msgId + '-user',
                 type: "user",
                 message: message.trim(),
                 time: time
             })
             arr.push({
+                id: msgId + '-bot',
                 type: "bot",
                 message: resObj.response,
-                time: time
+                time: time,
+                rating: 0,
+                feedback: ""
             })
             localStorage.setItem("messages", JSON.stringify(arr));
         } else {
             let arr = [
                 {
+                    id: msgId + '-user',
                     type: "user",
                     message: message.trim(),
                     time: time
                 },
                 {
+                    id: msgId + '-bot',
                     type: "bot",
                     message: resObj.response,
-                    time: time
+                    time: time,
+                    rating: 0,
+                    feedback: ""
                 },
             ];
             localStorage.setItem("messages", JSON.stringify(arr));

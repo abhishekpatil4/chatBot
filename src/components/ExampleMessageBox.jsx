@@ -2,6 +2,7 @@ import { Box } from "@mui/material";
 import { Typography } from "@mui/material";
 import { Grid } from "@mui/material";
 import data from "../assets/sampleData.json"
+import uniqid from 'uniqid';
 
 function getCurrentTime() {
     const currentDate = new Date();
@@ -19,32 +20,39 @@ const ExampleMessageBox = ({ message, id, setShowWelcomeMsg }) => {
     const handleClick = () => {
         setShowWelcomeMsg(false);
         const time = getCurrentTime();
+        const msgId = uniqid();
         if (localStorage.getItem("messages")) {
             let arr = JSON.parse(localStorage.getItem("messages"));
-            console.log("arr: ", arr);
             arr.push({
+                id: msgId + '-user',
                 type: "user",
                 message: data[50 + id].question,
                 time: time
             })
             arr.push({
+                id: msgId + '-bot',
                 type: "bot",
                 message: data[50 + id].response,
-                time: time
+                time: time,
+                rating: 0,
+                feedback: ""
             })
-            console.log("arr: ", arr);
             localStorage.setItem("messages", JSON.stringify(arr));
         } else {
             let arr = [
                 {
+                    id: msgId + '-user',
                     type: "user",
                     message: data[50 + id].question,
                     time: time
                 },
                 {
+                    id: msgId + '-bot',
                     type: "bot",
                     message: data[50 + id].response,
-                    time: time
+                    time: time,
+                    rating: 0,
+                    feedback: ""
                 },
             ];
             localStorage.setItem("messages", JSON.stringify(arr));
