@@ -26,17 +26,20 @@ This project aims to create an interactive chat application where users can:
 To run the project locally, follow these steps:
 
 1. **Clone the repository:**
+
    ```sh
    git clone https://github.com/abhishekpatil4/chatBot.git && cd chatBot
     ```
 2. **Install dependencies:**
-```sh
-   npm install
-```
+
+    ```sh
+    npm install
+    ```
 2. **Start the Application:**
-```sh
-   npm run dev
-```
+
+    ```sh
+    npm run dev
+    ```
 
 ## Live demo
 
