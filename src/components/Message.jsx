@@ -13,7 +13,11 @@ const Message = ({ type, message, id, feedback, rating }) => {
 
     const [value, setValue] = useState(rating);
     const [showRating, setShowRating] = useState(false);
-    return <Box sx={{ margin: '20px 0px', backgroundColor: '#D7C7F421', width: { xs: '80vw', sm: '60vw', lg: '80vw' }, minHeight: "6rem", borderRadius: "20px", boxShadow: 1, display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start', padding: '1.5rem' }}>
+    return <Box sx={{
+        margin: '20px 0px', backgroundColor: '#D7C7F421', width: { xs: '80vw', sm: '60vw', lg: '80vw' }, minHeight: "6rem", borderRadius: "20px", boxShadow: 1, display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start', padding: '1.5rem', '&:hover .hover-image': {
+            opacity: 1,
+        },
+    }}>
         {
             type === "user" ?
                 <Box sx={{ height: '65px', width: '65px', flexShrink: 0 }}>
@@ -38,7 +42,7 @@ const Message = ({ type, message, id, feedback, rating }) => {
                 10:33 AM
                 {type !== "user" &&
                     <>
-                        <img onClick={() => setShowRating((prev) => !prev)} src={up} alt="thumbs up icon" style={{ cursor: 'pointer' }} />
+                        <img onClick={() => setShowRating((prev) => !prev)} className="hover-image" src={up} alt="thumbs up icon" style={{ cursor: 'pointer' }} />
                         <img onClick={() => setOpen(true)} src={down} alt="thumbs down icon" style={{ cursor: 'pointer' }} />
                     </>
                 }
@@ -66,9 +70,9 @@ const Message = ({ type, message, id, feedback, rating }) => {
             }
             {
                 type !== "user" && feedback !== "" &&
-            <Box>
-                <Typography><span style={{ fontWeight: 700 }}>Feedback:</span> {feedback}</Typography>
-            </Box>
+                <Box>
+                    <Typography><span style={{ fontWeight: 700 }}>Feedback:</span> {feedback}</Typography>
+                </Box>
             }
         </Box>
     </Box>
