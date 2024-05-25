@@ -6,8 +6,11 @@ import up from "../assets/thumbUp.svg";
 import down from "../assets/thumbDown.svg";
 import Rating from '@mui/material/Rating';
 import { useState } from "react";
+import FeedBackModal from "./FeedBackModal";
 
 const Message = ({ type, message, id, feedback, rating }) => {
+    const [open, setOpen] = useState(false);
+
     const [value, setValue] = useState(rating);
     const [showRating, setShowRating] = useState(false);
     return <Box sx={{ margin: '20px 0px', backgroundColor: '#D7C7F421', width: { xs: '80vw', sm: '60vw', lg: '80vw' }, minHeight: "6rem", borderRadius: "20px", boxShadow: 1, display: 'flex', justifyContent: 'flex-start', alignItems: 'center', padding: '1.5rem' }}>
@@ -36,10 +39,11 @@ const Message = ({ type, message, id, feedback, rating }) => {
                 {type !== "user" &&
                     <>
                         <img onClick={() => setShowRating((prev) => !prev)} src={up} alt="thumbs up icon" style={{ cursor: 'pointer' }} />
-                        <img src={down} alt="thumbs down icon" />
+                        <img onClick={() => setOpen(true)} src={down} alt="thumbs down icon" style={{ cursor: 'pointer' }} />
                     </>
                 }
             </Typography>
+            <FeedBackModal open={open} setOpen={setOpen} msgId={id}/>
             {type !== "user" && showRating &&
                 <>
                     <Box sx={{ margin: '1rem 0rem' }}>
@@ -51,8 +55,8 @@ const Message = ({ type, message, id, feedback, rating }) => {
                                 setValue(newValue);
                                 console.log("id: ", id);
                                 let arr = JSON.parse(localStorage.getItem("messages"));
-                                for(let i=0; i<arr.length; i++){
-                                    if(arr[i].id === id){
+                                for (let i = 0; i < arr.length; i++) {
+                                    if (arr[i].id === id) {
                                         arr[i].rating = newValue;
                                     }
                                 }
@@ -60,9 +64,9 @@ const Message = ({ type, message, id, feedback, rating }) => {
                             }}
                         />
                     </Box>
-                    {/* <Box>
+                    <Box>
                         <Typography><span style={{fontWeight:700}}>Feedback:</span> {feedback}</Typography>
-                    </Box> */}
+                    </Box>
                 </>
             }
         </Box>

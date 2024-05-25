@@ -39,9 +39,9 @@ const MessageInHistory = ({ type, message, rating, feedback }) => {
                             value={rating}
                         />
                     </Box>
-                    {/* <Box>
+                    <Box>
                         <Typography><span style={{fontWeight:700}}>Feedback:</span> {feedback}</Typography>
-                    </Box> */}
+                    </Box>
                 </>
             }
         </Box>
