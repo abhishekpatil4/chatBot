@@ -10,7 +10,7 @@ const exampleMsg = ["Hi, what is the weather", "Hi, what is my location", "Hi, w
 
 const WelcomeMessage = ({ setShowWelcomeMsg }) => {
     const isXs = useMediaQuery((theme) => theme.breakpoints.down('sm'));
-    return <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', marginTop: { xs: '8rem', md: '0rem', lg: '8rem' } }}>
+    return <Box sx={{ display: 'flex', justifyContent: 'center', alignItems: 'center', flexDirection: 'column', marginTop: { xs: '0rem', lg: '8rem' } }}>
         <Typography sx={{ fontWeight: 600, fontSize: { xs: '22px', md: '28px' } }}>
             How Can I Help You Today?
         </Typography>

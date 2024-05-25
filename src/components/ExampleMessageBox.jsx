@@ -59,11 +59,11 @@ const ExampleMessageBox = ({ message, id, setShowWelcomeMsg }) => {
         }
     }
     return <Grid item xs={12} lg={6} onClick={handleClick} sx={{ cursor: 'pointer' }}>
-        <Box sx={{ width: { xs: '80vw', sm: '512px' }, height: "112px", backgroundColor: 'white', borderRadius: '5px', padding: '0.5rem', boxShadow: 2, margin: 'auto' }}>
-            <Typography sx={{ fontWeight: 700, fontSize: '20px', padding: '0.5rem' }}>
+        <Box sx={{ width: { xs: '80vw', sm: '512px' }, maxHeight: "112px", backgroundColor: 'white', borderRadius: '5px', padding: '0.5rem', boxShadow: 2, margin: 'auto' }}>
+            <Typography sx={{ fontWeight: 700, fontSize: '20px', padding: { xs: '0.2rem', sm: '0.5rem' } }}>
                 {message}
             </Typography>
-            <Typography sx={{ fontWeight: 400, fontSize: '16px', color: "gray", padding: '0.5rem' }}>
+            <Typography sx={{ fontWeight: 400, fontSize: '16px', color: "gray", padding: { xs: '0.2rem', sm: '0.5rem' } }}>
                 Get immediate AI generated response
             </Typography>
         </Box>
