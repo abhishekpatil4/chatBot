@@ -8,7 +8,7 @@ import Rating from '@mui/material/Rating';
 import { useState } from "react";
 
 const Message = ({ type, message, id, feedback, rating }) => {
-    const [value, setValue] = useState();
+    const [value, setValue] = useState(rating);
     const [showRating, setShowRating] = useState(false);
     return <Box sx={{ margin: '20px 0px', backgroundColor: '#D7C7F421', width: { xs: '80vw', sm: '60vw', lg: '80vw' }, minHeight: "6rem", borderRadius: "20px", boxShadow: 1, display: 'flex', justifyContent: 'flex-start', alignItems: 'center', padding: '1.5rem' }}>
         {
