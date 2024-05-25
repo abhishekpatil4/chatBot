@@ -52,6 +52,7 @@ function getCurrentTime() {
 
 const Home = ({ window, showWelcomeMsg, setShowWelcomeMsg }) => {
     const [message, setMessage] = useState("");
+    const [currentMessages, setCurrentMessages] = useState();
     useViewportHeight();
     const theme = useTheme();
 
@@ -81,6 +82,7 @@ const Home = ({ window, showWelcomeMsg, setShowWelcomeMsg }) => {
                 rating: 0,
                 feedback: ""
             })
+            setCurrentMessages(arr);
             localStorage.setItem("messages", JSON.stringify(arr));
         } else {
             let arr = [
@@ -99,6 +101,7 @@ const Home = ({ window, showWelcomeMsg, setShowWelcomeMsg }) => {
                     feedback: ""
                 },
             ];
+            setCurrentMessages(arr);
             localStorage.setItem("messages", JSON.stringify(arr));
         }
         setShowWelcomeMsg(false);
@@ -144,7 +147,7 @@ const Home = ({ window, showWelcomeMsg, setShowWelcomeMsg }) => {
                 {showWelcomeMsg ?
                     <WelcomeMessage setShowWelcomeMsg={setShowWelcomeMsg} />
                     :
-                    <CurrentMessages />
+                    <CurrentMessages currentMessages={currentMessages} />
                 }
 
                 <Box sx={{

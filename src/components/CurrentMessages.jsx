@@ -2,7 +2,7 @@ import { Box } from "@mui/material"
 import { useState, useEffect } from "react";
 import Message from "./Message";
 
-const CurrentMessages = () => {
+const CurrentMessages = ({ currentMessages }) => {
     const [messages, setMessages] = useState([]);
     useEffect(() => {
         const getLocalData = async () => {
@@ -12,8 +12,8 @@ const CurrentMessages = () => {
             }
         }
         getLocalData();
-    }, []);
-    return <Box sx={{marginBottom:"4rem", overflow:'scroll'}}>
+    }, [currentMessages]);
+    return <Box sx={{ marginBottom: "4rem", overflow: 'scroll' }}>
         {
             messages.length > 0 ?
                 messages.map((msg, idx) =>
