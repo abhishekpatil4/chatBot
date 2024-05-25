@@ -43,31 +43,32 @@ const Message = ({ type, message, id, feedback, rating }) => {
                     </>
                 }
             </Typography>
-            <FeedBackModal open={open} setOpen={setOpen} msgId={id}/>
+            <FeedBackModal open={open} setOpen={setOpen} msgId={id} />
             {type !== "user" && showRating &&
-                <>
-                    <Box sx={{ margin: '1rem 0rem' }}>
-                        <Typography component="legend">Rate this response</Typography>
-                        <Rating
-                            name="simple-controlled"
-                            value={value}
-                            onChange={(event, newValue) => {
-                                setValue(newValue);
-                                console.log("id: ", id);
-                                let arr = JSON.parse(localStorage.getItem("messages"));
-                                for (let i = 0; i < arr.length; i++) {
-                                    if (arr[i].id === id) {
-                                        arr[i].rating = newValue;
-                                    }
+                <Box sx={{ margin: '1rem 0rem' }}>
+                    <Typography component="legend">Rate this response</Typography>
+                    <Rating
+                        name="simple-controlled"
+                        value={value}
+                        onChange={(event, newValue) => {
+                            setValue(newValue);
+                            console.log("id: ", id);
+                            let arr = JSON.parse(localStorage.getItem("messages"));
+                            for (let i = 0; i < arr.length; i++) {
+                                if (arr[i].id === id) {
+                                    arr[i].rating = newValue;
                                 }
-                                localStorage.setItem("messages", JSON.stringify(arr));
-                            }}
-                        />
-                    </Box>
-                    <Box>
-                        <Typography><span style={{fontWeight:700}}>Feedback:</span> {feedback}</Typography>
-                    </Box>
-                </>
+                            }
+                            localStorage.setItem("messages", JSON.stringify(arr));
+                        }}
+                    />
+                </Box>
+            }
+            {
+                type !== "user" && feedback !== "" &&
+            <Box>
+                <Typography><span style={{ fontWeight: 700 }}>Feedback:</span> {feedback}</Typography>
+            </Box>
             }
         </Box>
     </Box>

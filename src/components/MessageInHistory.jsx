@@ -31,18 +31,19 @@ const MessageInHistory = ({ type, message, rating, feedback }) => {
             <Typography sx={{ display: "flex", gap: 1.8, fontSize: "12px", fontWeight: 400, lineHeight: '16px', color: "gray" }}>
                 10:33 AM
             </Typography>
-            {type !== "user" && rating>0 &&
-                <>
-                    <Box sx={{ margin: '0.2rem 0rem' }}>
-                        <Rating
-                            name="simple-controlled"
-                            value={rating}
-                        />
-                    </Box>
-                    <Box>
-                        <Typography><span style={{fontWeight:700}}>Feedback:</span> {feedback}</Typography>
-                    </Box>
-                </>
+            {type !== "user" && rating > 0 &&
+                <Box sx={{ margin: '0.2rem 0rem' }}>
+                    <Rating
+                        name="simple-controlled"
+                        value={rating}
+                    />
+                </Box>
+            }
+            {
+                type !== "user" && feedback !== "" &&
+                <Box>
+                    <Typography><span style={{ fontWeight: 700 }}>Feedback:</span> {feedback}</Typography>
+                </Box>
             }
         </Box>
     </Box>
