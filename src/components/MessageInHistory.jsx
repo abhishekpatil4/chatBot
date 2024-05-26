@@ -7,6 +7,7 @@ import down from "../assets/thumbDown.svg";
 import Rating from '@mui/material/Rating';
 
 const MessageInHistory = ({time, type, message, rating, feedback }) => {
+    time = time.split('&')[0];
     return <Box sx={{ margin: '20px 0px', width: { xs: '80vw', sm: '60vw', lg: '75vw' }, minHeight: "6rem", display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start', padding: '0rem 0.8rem' }}>
         {
             type === "user" ?

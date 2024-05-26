@@ -34,6 +34,7 @@ import { useNavigate } from 'react-router-dom';
 import SideBar from '../components/SideBar';
 import uniqid from 'uniqid';
 
+
 // import { ContextForWelcomeMsg } from "./components/ContextForWelcomeMsg"
 
 const drawerWidth = 240;
@@ -49,6 +50,19 @@ function getCurrentTime() {
     const formattedTime = `${hours}:${minutes} ${meridiem}`;
     return formattedTime;
 }
+
+function formattedDate() {
+    const now = new Date();
+    const options = {
+        weekday: 'short',
+        day: '2-digit',
+        month: 'short',
+        year: 'numeric'
+    };
+    const formatted = new Intl.DateTimeFormat('en-US', options).format(now);
+    return formatted;
+}
+
 
 const Home = ({ window, showWelcomeMsg, setShowWelcomeMsg }) => {
     const [message, setMessage] = useState("");
@@ -114,6 +128,7 @@ const Home = ({ window, showWelcomeMsg, setShowWelcomeMsg }) => {
     const handleSave = () => {
         const saveMessage = async () => {
             let messages = await JSON.parse(localStorage.getItem("messages"));
+            messages[messages.length - 1].time = await messages[messages.length - 1].time + '&' + formattedDate();
             if (localStorage.getItem("messageHistory")) {
                 let arr = await JSON.parse(localStorage.getItem("messageHistory"));
                 arr.push(messages);

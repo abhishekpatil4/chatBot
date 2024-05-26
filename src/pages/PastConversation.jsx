@@ -62,25 +62,31 @@ const PastConversation = ({ window, showWelcomeMsg, setShowWelcomeMsg }) => {
             {
                 messageHistory.length > 0 ? messageHistory.map((msg, idx) => {
                     if (rating === "All Ratings") {
-                        return <Box key={idx} sx={{
-                            margin: '1rem 0rem', background: 'linear-gradient(90deg, #BFACE2 0%, #D7C7F4 100%)', borderRadius: '10px'
-                        }}>
-                            {
-                                msg.map((m, idx) =>
-                                    <MessageInHistory key={idx} time={m.time} type={m.type} message={m.message} rating={m.rating} feedback={m.feedback} />
-                                )
-                            }
-                        </Box>
+                        return <>
+                            <Typography sx={{fontSize:'18px', margin:'0.5rem 0rem 0rem 0rem'}}>{msg[msg.length - 1].time.split('&')[1]}</Typography>
+                            <Box key={idx} sx={{
+                                margin: '1rem 0rem', background: 'linear-gradient(90deg, #BFACE2 0%, #D7C7F4 100%)', borderRadius: '10px'
+                            }}>
+                                {
+                                    msg.map((m, idx) =>
+                                        <MessageInHistory key={idx} time={m.time} type={m.type} message={m.message} rating={m.rating} feedback={m.feedback} />
+                                    )
+                                }
+                            </Box>
+                        </>
                     } else if (msg[msg.length - 1].rating === Number(rating)) {
-                        return <Box key={idx} sx={{
-                            margin: '1rem 0rem', background: 'linear-gradient(90deg, #BFACE2 0%, #D7C7F4 100%)', borderRadius: '10px'
-                        }}>
-                            {
-                                msg.map((m, idx) =>
-                                    <MessageInHistory key={idx} type={m.type} message={m.message} rating={m.rating} feedback={m.feedback} />
-                                )
-                            }
-                        </Box>
+                        return <>
+                            <Typography sx={{fontSize:'120px'}}>{msg[msg.length - 1].time.split('&')[1]}</Typography>
+                            <Box key={idx} sx={{
+                                margin: '1rem 0rem', background: 'linear-gradient(90deg, #BFACE2 0%, #D7C7F4 100%)', borderRadius: '10px'
+                            }}>
+                                {
+                                    msg.map((m, idx) =>
+                                        <MessageInHistory key={idx} type={m.type} message={m.message} rating={m.rating} feedback={m.feedback} />
+                                    )
+                                }
+                            </Box>
+                        </>
                     }
                 })
                     :
