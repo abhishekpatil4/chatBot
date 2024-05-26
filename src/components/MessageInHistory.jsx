@@ -6,7 +6,7 @@ import up from "../assets/thumbUp.svg";
 import down from "../assets/thumbDown.svg";
 import Rating from '@mui/material/Rating';
 
-const MessageInHistory = ({ type, message, rating, feedback }) => {
+const MessageInHistory = ({time, type, message, rating, feedback }) => {
     return <Box sx={{ margin: '20px 0px', width: { xs: '80vw', sm: '60vw', lg: '75vw' }, minHeight: "6rem", display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start', padding: '0rem 0.8rem' }}>
         {
             type === "user" ?
@@ -29,7 +29,7 @@ const MessageInHistory = ({ type, message, rating, feedback }) => {
                 {message}
             </Typography>
             <Typography sx={{ display: "flex", gap: 1.8, fontSize: "12px", fontWeight: 400, lineHeight: '16px', color: "gray" }}>
-                10:33 AM
+                {time}
             </Typography>
             {type !== "user" && rating > 0 &&
                 <Box sx={{ margin: '0.2rem 0rem' }}>

@@ -67,7 +67,7 @@ const PastConversation = ({ window, showWelcomeMsg, setShowWelcomeMsg }) => {
                         }}>
                             {
                                 msg.map((m, idx) =>
-                                    <MessageInHistory key={idx} type={m.type} message={m.message} rating={m.rating} feedback={m.feedback} />
+                                    <MessageInHistory key={idx} time={m.time} type={m.type} message={m.message} rating={m.rating} feedback={m.feedback} />
                                 )
                             }
                         </Box>

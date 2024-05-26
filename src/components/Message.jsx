@@ -8,7 +8,7 @@ import Rating from '@mui/material/Rating';
 import { useState } from "react";
 import FeedBackModal from "./FeedBackModal";
 
-const Message = ({ type, message, id, feedback, rating, showThumbs = false }) => {
+const Message = ({time, type, message, id, feedback, rating, showThumbs = false }) => {
     const [open, setOpen] = useState(false);
 
     const [value, setValue] = useState(rating);
@@ -41,7 +41,7 @@ const Message = ({ type, message, id, feedback, rating, showThumbs = false }) =>
                 {message}
             </Typography>
             <Typography sx={{ display: "flex", gap: 1.8, fontSize: "12px", fontWeight: 400, lineHeight: '16px', color: "gray" }}>
-                10:33 AM
+                {time}
                 {type !== "user" && showThumbs &&
                     <>
                         <Box sx={{ cursor: 'pointer', opacity: { xs: 1, md: isHovered ? 1 : 0 } }}>
