@@ -63,7 +63,7 @@ const PastConversation = ({ window, showWelcomeMsg, setShowWelcomeMsg }) => {
                 messageHistory.length > 0 ? messageHistory.map((msg, idx) => {
                     if (rating === "All Ratings") {
                         return <Box key={idx} sx={{
-                            margin: '1rem 0rem', background: 'linear-gradient(90deg, #BFACE2 0%, #D7C7F4 100%)', padding: '1rem', borderRadius: '10px'
+                            margin: '1rem 0rem', background: 'linear-gradient(90deg, #BFACE2 0%, #D7C7F4 100%)', borderRadius: '10px'
                         }}>
                             {
                                 msg.map((m, idx) =>
@@ -73,7 +73,7 @@ const PastConversation = ({ window, showWelcomeMsg, setShowWelcomeMsg }) => {
                         </Box>
                     } else if (msg[msg.length - 1].rating === Number(rating)) {
                         return <Box key={idx} sx={{
-                            margin: '1rem 0rem', background: 'linear-gradient(90deg, #BFACE2 0%, #D7C7F4 100%)', padding: '1rem', borderRadius: '10px'
+                            margin: '1rem 0rem', background: 'linear-gradient(90deg, #BFACE2 0%, #D7C7F4 100%)', borderRadius: '10px'
                         }}>
                             {
                                 msg.map((m, idx) =>
