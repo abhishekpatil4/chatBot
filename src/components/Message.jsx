@@ -44,8 +44,12 @@ const Message = ({ type, message, id, feedback, rating, showThumbs = false }) =>
                 10:33 AM
                 {type !== "user" && showThumbs &&
                     <>
-                        <img onClick={() => setShowRating((prev) => !prev)} className="hover-image" src={up} alt="thumbs up icon" style={{ cursor: 'pointer', display: isHovered ? 'block' : 'none', }} />
-                        <img onClick={() => setOpen(true)} src={down} alt="thumbs down icon" style={{ cursor: 'pointer', display: isHovered ? 'block' : 'none' }} />
+                        <Box sx={{ cursor: 'pointer', opacity: { xs: 1, md: isHovered ? 1 : 0 } }}>
+                            <img onClick={() => setShowRating((prev) => !prev)} className="hover-image" src={up} alt="thumbs up icon" />
+                        </Box>
+                        <Box sx={{ cursor: 'pointer', opacity: { xs: 1, md: isHovered ? 1 : 0 } }}>
+                            <img onClick={() => setOpen(true)} src={down} alt="thumbs down icon" />
+                        </Box>
                     </>
                 }
             </Typography>
