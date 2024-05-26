@@ -8,12 +8,14 @@ import Rating from '@mui/material/Rating';
 import { useState } from "react";
 import FeedBackModal from "./FeedBackModal";
 
-const Message = ({ type, message, id, feedback, rating, showThumbs=false }) => {
+const Message = ({ type, message, id, feedback, rating, showThumbs = false }) => {
     const [open, setOpen] = useState(false);
 
     const [value, setValue] = useState(rating);
     const [showRating, setShowRating] = useState(false);
-    return <Box sx={{
+    const [isHovered, setIsHovered] = useState(false);
+
+    return <Box onMouseEnter={() => setIsHovered(true)} onMouseLeave={() => setIsHovered(false)} sx={{
         margin: '20px 0px', backgroundColor: '#D7C7F421', width: { xs: '80vw', sm: '60vw', lg: '80vw' }, minHeight: "6rem", borderRadius: "20px", boxShadow: 1, display: 'flex', justifyContent: 'flex-start', alignItems: 'flex-start', padding: '1.5rem', '&:hover .hover-image': {
             opacity: 1,
         },
@@ -42,8 +44,8 @@ const Message = ({ type, message, id, feedback, rating, showThumbs=false }) => {
                 10:33 AM
                 {type !== "user" && showThumbs &&
                     <>
-                        <img onClick={() => setShowRating((prev) => !prev)} className="hover-image" src={up} alt="thumbs up icon" style={{ cursor: 'pointer' }} />
-                        <img onClick={() => setOpen(true)} src={down} alt="thumbs down icon" style={{ cursor: 'pointer' }} />
+                        <img onClick={() => setShowRating((prev) => !prev)} className="hover-image" src={up} alt="thumbs up icon" style={{ cursor: 'pointer', display: isHovered ? 'block' : 'none', }} />
+                        <img onClick={() => setOpen(true)} src={down} alt="thumbs down icon" style={{ cursor: 'pointer', display: isHovered ? 'block' : 'none' }} />
                     </>
                 }
             </Typography>
