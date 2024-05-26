@@ -76,7 +76,7 @@ const PastConversation = ({ window, showWelcomeMsg, setShowWelcomeMsg }) => {
                         </>
                     } else if (msg[msg.length - 1].rating === Number(rating)) {
                         return <>
-                            <Typography sx={{fontSize:'120px'}}>{msg[msg.length - 1].time.split('&')[1]}</Typography>
+                            <Typography sx={{fontSize:'18px'}}>{msg[msg.length - 1].time.split('&')[1]}</Typography>
                             <Box key={idx} sx={{
                                 margin: '1rem 0rem', background: 'linear-gradient(90deg, #BFACE2 0%, #D7C7F4 100%)', borderRadius: '10px'
                             }}>
